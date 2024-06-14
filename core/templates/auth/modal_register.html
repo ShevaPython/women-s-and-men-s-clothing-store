@@ -1,0 +1,52 @@
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-medium text-left">Sign up</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="registerForm" action="/accounts/signup/" method="POST">
+                {% csrf_token %}
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-4">
+                        <input type="text" id="RegisterForm-name" name="username" class="form-control validate" placeholder="Your name">
+                    </div>
+                    <div class="md-form mb-4">
+                        <input type="email" id="RegisterForm-email" name="email" class="form-control validate" placeholder="Your email">
+                    </div>
+                    <div class="md-form mb-4">
+                        <input type="password" id="RegisterForm-pass" name="password1" class="form-control validate" placeholder="Your password">
+                    </div>
+                     <div class="md-form mb-4">
+                        <input type="password" id="RegisterForm-pass2" name="password2" class="form-control validate" placeholder="Your password">
+                    </div>
+
+                    <div class="checkbox-link d-flex justify-content-between">
+                        <div class="left-col">
+                            <a href="{% url 'account_login' %}">Sign In</a>
+                        </div>
+                                                                       <div id="login-errors">
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="right-col"><a href="{% url 'account_reset_password' %}">Forget Password?</a></div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

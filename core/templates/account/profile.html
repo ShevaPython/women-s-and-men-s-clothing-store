@@ -1,0 +1,109 @@
+{%extends 'base.html' %}
+{% block content %}
+<div class="main-content w-100 float-left blog-list">
+    <div class="container">
+        <div class="row">
+
+            <div class="products-grid col-xl-9 col-lg-8 order-lg-2">
+                <div class="row">
+                    <div class="col-lg-12 order-lg-last account-content">
+                        <h4>Edit Account Information</h4>
+
+
+<div class="form-group mt-3">
+    <p class="welcome-message">Hello, <strong>{{ user.username }}</strong>!</p>
+    {% if user.email_verified %}
+        <p class="verification-status text-success">Email verification status: Verified</p>
+    {% else %}
+        <p class="verification-status text-danger">Email verification status: Not verified</p>
+        <p>Please verify your email address (<em>{{ user.email }}</em>) to access full account features.</p>
+    {% endif %}
+    <a href="{% url 'account_change_password' %}" class="btn btn-primary">Change Password</a>
+    <a href="{% url 'account_email' %}?action=send" class="btn btn-secondary ml-2">Resend Verification Email</a>
+    <a href="{% url 'account_email' %}" class="btn btn-info ml-2">Change Email</a>
+</div>
+
+
+
+
+                            <div class="form-footer d-flex justify-content-between align-items-center">
+                                <a href="#"><i class="material-icons">navigate_before</i>Back</a>
+
+                                <div class="form-footer-right">
+                                    <button type="submit" class="btn btn-primary btn-primary">Save</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar col-xl-3 col-lg-3 order-lg-1">
+                <div class="sidebar-product left-sidebar w-100 float-left">
+                    <div class="title">
+                        <a data-toggle="collapse" href="#sidebar-product" aria-expanded="false"
+                           aria-controls="sidebar-product" class="d-lg-none block-toggler">sale products</a>
+                    </div>
+                    <div id="sidebar-product" class="collapse w-100 float-left">
+                        <div class="sidebar-block sale products">
+                            <h3 class="widget-title">sale products</h3>
+                            <div class="product-layouts">
+                                <div class="product-thumb">
+                                    <div class="image col-sm-4 float-left">
+                                        <a href="#">
+                                            <img src="img/products/01.jpg" alt="01"/> </a></div>
+                                    <div class="thumb-description col-sm-8 text-left float-left">
+                                        <div class="caption">
+                                            <h4 class="product-title text-capitalize"><a href="product-details.html">aliquam
+                                                quaerat voluptatem</a></h4>
+                                        </div>
+                                        <div class="price">
+                                            <div class="regular-price">$100.00</div>
+                                            <div class="old-price">$150.00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-layouts">
+                                <div class="product-thumb">
+                                    <div class="image col-sm-4 float-left">
+                                        <a href="#">
+                                            <img src="img/products/02.jpg" alt="01"/> </a></div>
+                                    <div class="thumb-description col-sm-8 text-left float-left">
+                                        <div class="caption">
+                                            <h4 class="product-title text-capitalize"><a href="product-details.html">aspetur
+                                                autodit autfugit</a></h4>
+                                        </div>
+                                        <div class="price">
+                                            <div class="regular-price">$100.00</div>
+                                            <div class="old-price">$150.00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-layouts">
+                                <div class="product-thumb">
+                                    <div class="image col-sm-4 float-left">
+                                        <a href="#">
+                                            <img src="img/products/03.jpg" alt="03"/> </a></div>
+                                    <div class="thumb-description col-sm-8 text-left float-left">
+                                        <div class="caption">
+                                            <h4 class="product-title text-capitalize"><a href="product-details.html">magni
+                                                dolores eosquies</a></h4>
+                                        </div>
+                                        <div class="price">
+                                            <div class="regular-price">$100.00</div>
+                                            <div class="old-price">$150.00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

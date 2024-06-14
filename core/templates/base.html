@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    {% block title %}
+    <title>Fashion Template for Bootstrap</title>
+    {% endblock title %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Demo powered by Templatetrip">
+    <meta name="author" content="">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl-carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lightbox.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+</head>
+
+<body class="index layout1">
+<!-- Вывод имени пользователя, если он аутентифицирован -->
+{% if request.user.is_authenticated %}
+<h1>Добро пожаловать, {{ request.user.username }}!</h1>
+{% endif %}
+
+{% block header %}
+{% include 'base/_incl/_header.html' %}
+{% endblock header %}
+
+{% block content %}
+{% endblock content %}
+
+{% block newslatter%}
+{% include 'base/_incl/_newslatter.html' %}
+{% endblock newslatter %}
+
+{% block footer %}
+{% include 'base/_incl/_footer.html' %}
+{% endblock footer %}
+
+{% block modal_login %}
+{% include 'auth/modal_login.html' %}
+{% endblock modal_login %}
+
+{% block modal_register%}
+{% include 'auth/modal_register.html' %}
+{% endblock modal_register %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/parallax.js' %}"></script>
+<script src="{% static 'js/lightbox-2.6.min.js' %}"></script>
+<script src="{% static 'js/ResizeSensor.min.js' %}"></script>
+<script src="{% static 'js/theia-sticky-sidebar.min.js' %}"></script>
+<script src="{% static 'js/inview.js' %}"></script>
+<script src="{% static 'js/cookiealert.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+<script src="{% static 'js/jquery.lazy.min.js' %}"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    var loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var formData = new FormData(loginForm);
+
+        fetch(loginForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.form_is_valid) {
+                window.location.href = data.redirect_url;
+            } else {
+                var errorsHtml = '';
+                for (var field in data.errors) {
+                    errorsHtml += data.errors[field].join('<br>') + '<br>';
+                }
+                document.getElementById('login-errors').innerHTML = errorsHtml;
+                $('#modalLoginForm').modal('show');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+</script>
+</body>
+</html>

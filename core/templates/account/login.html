@@ -1,0 +1,16 @@
+{% extends "shop/index_shop.html" %}
+
+{% block title %}Login{% endblock %}
+{% block modal_login %}
+
+{% include 'auth/modal_login.html' %}
+
+<!-- Скрипт для открытия модального окна при загрузке страницы -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#modalLoginForm').modal('show'); // Открываем модальное окно
+    });
+</script>
+
+{% endblock modal_login %}
+
