@@ -26,12 +26,12 @@ prod-migrate:
 .PHONY: dev-migrations
 dev-migrations:
 	@echo "Running migrations developer..."
-	poetry run python -m core.manage migrate --settings=core.project.settings.dev
+	poetry run python -m core.manage makemigrations --settings=core.project.settings.dev
 
 .PHONY: prod-migrations
 prod-migrations:
 	@echo "Running migrations production..."
-	poetry run python -m core.manage migrate --settings=core.project.settings.prod
+	poetry run python -m core.manage makemigrations  --settings=core.project.settings.prod
 
 .PHONY: create-dev-superuser
 create-dev-superuser:

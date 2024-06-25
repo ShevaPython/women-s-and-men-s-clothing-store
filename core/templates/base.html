@@ -31,10 +31,7 @@
 </head>
 
 <body class="index layout1">
-<!-- Вывод имени пользователя, если он аутентифицирован -->
-{% if request.user.is_authenticated %}
-<h1>Добро пожаловать, {{ request.user.username }}!</h1>
-{% endif %}
+
 
 {% block header %}
 {% include 'base/_incl/_header.html' %}

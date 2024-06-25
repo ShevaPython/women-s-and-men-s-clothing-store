@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+
+from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -22,8 +24,10 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
+
     'core.blog.apps.BlogConfig',
     'core.accounts.apps.AccountsConfig',
+    'core.shop.apps.ShopConfig',
 
 ]
 
@@ -91,10 +95,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Settings email
-
 # Settings AUTH
-
 AUTHENTICATION_BACKENDS = [
 
     'django.contrib.auth.backends.ModelBackend',
@@ -104,8 +105,10 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 LOGIN_REDIRECT_URL = '/'
+
 # URL перенаправления после успешной регистрации
-ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/profile'
+ACCOUNT_SIGNUP_REDIRECT_URL = reverse_lazy('accounts:profile')
+LOGIN_REDIRECT_URL = reverse_lazy('shop:index')
 
 # Settings SMTP
 EMAIL_HOST = 'smtp.gmail.com'
@@ -116,6 +119,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # AUTH_USER_MODEL = 'account.CustomUser'
-# LOGIN_REDIRECT_URL = reverse_lazy('account:profile')
-# LOGIN_URL = reverse_lazy('account:login')
-# LOGOUT_URL = reverse_lazy('account:logout')
+
