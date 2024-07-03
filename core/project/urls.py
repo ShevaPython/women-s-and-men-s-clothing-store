@@ -1,10 +1,16 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('account/', include('core.accounts.urls'),name='profile'),
+    path('account/', include('core.accounts.urls'), name='profile'),
+    path('blog/', include('core.blog.urls', namespace='blog')),
     path('', include('core.shop.urls', namespace='shop')),
-    path('blog/', include('core.blog.urls', namespace='blog'))
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

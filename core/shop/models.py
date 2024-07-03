@@ -21,8 +21,8 @@ class Category(models.Model):
 
        """
     CATEGORY_CHOICES = [
-        ('MEN', 'Men'),
-        ('WOMEN', 'Women'),
+        ('MEN', 'Men\'s'),
+        ('WOMEN', 'Womens'),
     ]
     name = models.CharField(choices=CATEGORY_CHOICES,
                             max_length=10,

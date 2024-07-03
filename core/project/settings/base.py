@@ -108,7 +108,7 @@ LOGIN_REDIRECT_URL = '/'
 
 # URL перенаправления после успешной регистрации
 ACCOUNT_SIGNUP_REDIRECT_URL = reverse_lazy('accounts:profile')
-LOGIN_REDIRECT_URL = reverse_lazy('shop:index')
+LOGIN_REDIRECT_URL = reverse_lazy('shop:product_list')
 
 # Settings SMTP
 EMAIL_HOST = 'smtp.gmail.com'
@@ -119,4 +119,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # AUTH_USER_MODEL = 'account.CustomUser'
-
